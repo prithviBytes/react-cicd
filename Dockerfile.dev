@@ -1,10 +1,13 @@
 FROM node:16-alpine
 
+# By default docker would be creating non-existant file/dir using root priviledges,
+# If thats the case then node user would not have necessary priviledge to alter the files/dir. 
 USER node
 
 RUN mkdir -p /home/node/app
 WORKDIR /home/node/app
 
+# This inline command will set the ownership of the file to node user.
 COPY --chown=node:node ./package.json ./
 
 RUN npm install

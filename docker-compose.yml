@@ -2,7 +2,10 @@ version: '3'
 
 services:
   web:
-    build: .
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     ports: 
       - "3001:3000"
     volumes:

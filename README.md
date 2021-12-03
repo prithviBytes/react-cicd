@@ -34,4 +34,5 @@ To enable hot reloading, we can attact command to the running container and chec
 docker exec -it <container_id> npm run test
 ```
 
-
+Alertnatively we can create a seperate service in docker-compose file and then run test while having the volumes mapped correctly from the local.
+The drawback with this approach is that it remove the interactivity with the tests.

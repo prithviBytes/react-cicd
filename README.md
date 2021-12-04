@@ -36,3 +36,11 @@ docker exec -it <container_id> npm run test
 
 Alertnatively we can create a seperate service in docker-compose file and then run test while having the volumes mapped correctly from the local.
 The drawback with this approach is that it remove the interactivity with the tests.
+
+### Using Travis CI
+
+Activating Build In Travis CI is essential.
+Repository should have a **.tavis.ci** file.
+This file will then Indicate the execution steps.
+All the tests would be executed and if there are any errors Travis CI would indicate that the test has failed, or passed.
+

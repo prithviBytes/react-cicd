@@ -44,3 +44,26 @@ Repository should have a **.tavis.ci** file.
 This file will then Indicate the execution steps.
 All the tests would be executed and if there are any errors Travis CI would indicate that the test has failed, or passed.
 
+
+### AWS Elastic BeanStalk
+
+Elastic Beanstalk is the easiest way to deploy a container.
+
+We can create an environment and select Docker as a product.
+
+AWS will route the request that comes to the <domain> to the <Load Balancer> that is by default created for us.
+
+This LB will then route the request to the VM which has Docker running to the container that we have created which has our App running inside it.
+
+The LB monitors the number of request coming to it and whenever the request reaches a threshol it will
+increase the number of VM instaces to manage the load.
+
+This new AWS platform will conflict with the project we have built since it will look for a docker.compose.yml file to build from by default instead of a Dockerfile.
+
+Rename the docker-compose.yml file to docker-compose-dev.yml. Going forward you will need to pass a flag to specify which compose file you want to build and run from:
+
+```
+docker-compose -f docker-compose-dev.yml up
+docker-compose -f docker-compose-dev.yml up --build
+docker-compose -f docker-compose-dev.yml down
+```

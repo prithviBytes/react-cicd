@@ -67,3 +67,13 @@ docker-compose -f docker-compose-dev.yml up
 docker-compose -f docker-compose-dev.yml up --build
 docker-compose -f docker-compose-dev.yml down
 ```
+
+
+### API Keys
+
+To deploy code to AWS we would require API keys, this can be achieved by Creating a User and granting the user with the essential permissions. Ideally we should be saving this KEY/SECRET to Travis CI Environment Variables.
+
+### Expose PORT
+
+In Dockerfile we would be specifying the port that we want to expose witht the keyword EXPOSE.
+ElasticBeanstalk would look at this and Automatically map the port.

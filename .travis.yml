@@ -16,3 +16,23 @@ before_install:
 # By default npm test runs the watcher with interactive CLI. However, you can force it to run tests once and finish the process by setting an environment variable called CI.
 script:
   - docker run -e CI=true prithvi107/react-cicd npm run test
+
+# Deploy sectino specifies the deployment stages.
+# Provider: Vendor that we would be deploying into. Travis by default supports multiple providers.
+# Region: Where our instance was created.
+# Name: Name of the app that we have mentioned in AWS
+# Bucket_name: Ideally Travis-CI would ZIP all of our code and then add it to the AWS Bucket. When we create a Beanstalk by default AWS initiaizes a S3 Bucket for us.
+# Bucket_path: This is ideally the Bucket_name and the app_name
+# ON: Spacifies the branch that the code needs to be deployed at.
+deploy:
+  provider: awselasticbeanstalk
+  region: "us-west-2"
+  name: "react-cicd"
+  environment: "react-cicd-env"
+  bucket_name: elasticbeanstalk-us-west-2
+  bucket_path: "react-cicd"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+

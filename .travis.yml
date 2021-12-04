@@ -1,0 +1,18 @@
+# sudo access is mandatory.
+sudo: required
+
+# List the services that we would require for the build, In our case Docker.
+services:
+  - docker
+
+# Before install: Steps that needs to be executed before the Test.
+before_install:
+  - docker build -f Dockerfile.dev -t prithvi107/react-cicd .
+
+# Script section is the one where we mention the test command.
+# Travis would be monitoring the return status code of the Scripts.
+# If incase it gets return status code other then 0 it would assume that 
+# the test FAILED.
+# By default npm test runs the watcher with interactive CLI. However, you can force it to run tests once and finish the process by setting an environment variable called CI.
+script:
+  - docker run -e CI=true prithvi107/react-cicd npm run test
